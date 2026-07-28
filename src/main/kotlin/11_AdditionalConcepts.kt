@@ -67,9 +67,9 @@ fun main() {
     println()
 
     // ============================================================
-    // 11.5 BUILDSTRING DSL
+    // 11.5 buildString DSL
     // ============================================================
-    println("━━━ 11.5 BUILDSTRING DSL ━━━\n")
+    println("━━━ 11.5 buildString DSL ━━━\n")
 
     val buildResult = buildString {
         append("Hello")

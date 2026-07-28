@@ -34,9 +34,9 @@ fun main() {
     println("  Map to " + "{word -> word.length}: ${words.map { word -> word.length }}")
 
     // ============================================================
-    // 5.2 MAPNOTNULL - MAP AND FILTER NULLS
+    // 5.2 mapNotNull - MAP AND FILTER NULLS
     // ============================================================
-    println("\n━━━ 5.2 MAPNOTNULL ━━━\n")
+    println("\n━━━ 5.2 mapNotNull ━━━\n")
 
     val mixed = listOf("123", "abc", "456", "def", "789")
     println("  Mixed: $mixed")
@@ -55,9 +55,9 @@ fun main() {
     println("  Filter not length 3: ${words.filterNot { it.length == 3 }}")
 
     // ============================================================
-    // 5.4 GROUPBY - GROUP ELEMENTS BY KEY
+    // 5.4 groupBy - GROUP ELEMENTS BY KEY
     // ============================================================
-    println("\n━━━ 5.4 GROUPBY ━━━\n")
+    println("\n━━━ 5.4 groupBy ━━━\n")
 
     println("  Original words: $words")
     val byLength = words.groupBy { it.length }

@@ -53,7 +53,7 @@ fun main() {
     println("  Digits only: ${sample.split(Regex("[^0-9]+")).filter { it.isNotEmpty() }}")
 
     // Words (alphanumeric + underscore)
-    println("  Words: ${sample.split(Regex("[^\\w]+")).filter { it.isNotEmpty() }}")
+    println("  Words: ${sample.split(Regex("[\\w+]")).filter { it.isNotEmpty() }}")
 
     // Non-letters (your code)
     println("  Non-letters: ${sample.split(Regex("[^A-Za-z]+")).filter { it.isNotEmpty() }}")
@@ -118,7 +118,7 @@ fun main() {
         "john.doe@gmail.com",
         "invalid-email",
         "https://kotlinlang.org",
-        "http://example.com/path",
+        "https://example.com/path",
         "12345",
         "abc123"
     )

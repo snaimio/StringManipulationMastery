@@ -1,4 +1,16 @@
+@file:Suppress("Println")
+
 package org.example
+
+/**
+ * ============================================================
+ * LESSON 10: PRACTICE EXERCISES
+ * ============================================================
+ *
+ * This file contains practice exercises to test your knowledge
+ * of string manipulation in Kotlin.
+ * ============================================================
+ */
 
 fun main() {
     println("\n" + "═".repeat(60))
@@ -53,7 +65,9 @@ fun main() {
     val findSub = "hello"
     println("  Text: \"$findText\"")
     println("  Substring: \"$findSub\"")
-    println("  Positions: ${findAllPositions(findText, findSub)}")
+    // ✅ Using function from SharedUtils
+    val positions = findAllOccurrences(findText, findSub)
+    println("  Positions: $positions")
     println()
 
     // Exercise 8: Title Case
@@ -86,9 +100,7 @@ fun countWords(text: String): Int {
 }
 
 fun reverseWords(text: String): String {
-    return text.split(" ")
-        .map { it.reversed() }
-        .joinToString(" ")
+    return text.split(" ").joinToString(" ") { it.reversed() }
 }
 
 fun findLongestWord(text: String): String? {
@@ -110,16 +122,6 @@ fun countCharacterOccurrences(text: String): Map<Char, Int> {
     return text.filter { it.isLetter() }
         .groupingBy { it.lowercaseChar() }
         .eachCount()
-}
-
-fun findAllPositions(text: String, sub: String): List<Int> {
-    val result = mutableListOf<Int>()
-    var index = text.indexOf(sub)
-    while (index != -1) {
-        result.add(index)
-        index = text.indexOf(sub, index + 1)
-    }
-    return result
 }
 
 fun toTitleCase(text: String): String {
@@ -149,3 +151,16 @@ fun processString(text: String) {
     println("  Reversed: \"${text.reversed()}\"")
     println("  Title Case: \"${toTitleCase(text)}\"")
 }
+
+// ============================================================
+// ❌ REMOVED - Duplicate! Now in SharedUtils
+// ============================================================
+// fun findAllOccurrences(text: String, sub: String): List<Int> {
+//     val result = mutableListOf<Int>()
+//     var index = text.indexOf(sub)
+//     while (index != -1) {
+//         result.add(index)
+//         index = text.indexOf(sub, index + 1)
+//     }
+//     return result
+// }

@@ -1,8 +1,5 @@
 package org.example
 
-// Import shared utilities
-import org.example.*  // This imports all extensions from _00_SharedUtils
-
 fun main() {
     println("\n" + "═".repeat(60))
     println("  📚  LESSON 3: SPLITTING & JOINING")

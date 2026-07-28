@@ -1,3 +1,5 @@
+@file:Suppress("Println")
+
 package org.example
 
 /**
@@ -36,9 +38,9 @@ fun main() {
     println("  contains('z'): ${text.contains('z')}")
 
     // ============================================================
-    // 4.2 STARTSWITH / ENDSWITH
+    // 4.2 startsWith / endsWith
     // ============================================================
-    println("\n━━━ 4.2 STARTSWITH / ENDSWITH ━━━\n")
+    println("\n━━━ 4.2 startsWith / endsWith ━━━\n")
 
     println("  Text: \"$text\"")
     println("  startsWith(\"The\"): ${text.startsWith("The")}")
@@ -50,9 +52,9 @@ fun main() {
     println("  endsWith(\"dog\", ignoreCase = true): ${text.endsWith("dog", ignoreCase = true)}")
 
     // ============================================================
-    // 4.3 INDEXOF / LASTINDEXOF
+    // 4.3 indexOf / lastIndexOf
     // ============================================================
-    println("\n━━━ 4.3 INDEXOF / LASTINDEXOF ━━━\n")
+    println("\n━━━ 4.3 indexOf / lastIndexOf ━━━\n")
 
     println("  Text: \"$text\"")
     println("  indexOf(\"fox\"): ${text.indexOf("fox")}")
@@ -62,7 +64,7 @@ fun main() {
     println("  lastIndexOf(\"the\", ignoreCase = true): ${text.lastIndexOf("the", ignoreCase = true)}")
     println("  indexOf(\"x\"): ${text.indexOf('x')}")
     println("  indexOf(\"z\"): ${text.indexOf('z')}")
-    println("  indexOf(\"fox\", 15): ${text.indexOf("fox", 15)}") // Start searching from index 15
+    println("  indexOf(\"fox\", 15): ${text.indexOf("fox", 15)}")
 
     // ============================================================
     // 4.4 ANY / ALL / NONE
@@ -87,7 +89,7 @@ fun main() {
     }
 
     // ============================================================
-    // 4.5 CHECKING CHARACTER TYPES (YOUR CODE)
+    // 4.5 CHECKING CHARACTER TYPES
     // ============================================================
     println("\n━━━ 4.5 CHECKING CHARACTER TYPES ━━━\n")
 
@@ -108,7 +110,7 @@ fun main() {
     }
 
     // ============================================================
-    // 4.6 PRACTICE: DOES FIRST LETTER EXIST (YOUR CODE)
+    // 4.6 PRACTICE: DOES FIRST LETTER EXIST
     // ============================================================
     println("\n━━━ 4.6 PRACTICE: DOES FIRST LETTER EXIST ━━━\n")
 
@@ -126,6 +128,7 @@ fun main() {
     println("  Second string: \"$str3\"")
     println("  Using contains(): ${doesFirstLetterExist(str1, str3)}")
     println("  Without contains(): ${doesFirstLetterNoContainsExist(str1, str3)}")
+    println()
 
     // ============================================================
     // 4.7 PRACTICE: FIND ALL OCCURRENCES
@@ -137,9 +140,16 @@ fun main() {
 
     println("  Text: \"$searchText\"")
     println("  Searching for: \"$searchWord\"")
-    println("  All occurrences at: ${findAllOccurrences(searchText, searchWord)}")
-    println("  Occurrence count: ${countOccurrences(searchText, searchWord)}")
+
+    // ✅ Using the function from SharedUtils (no duplicate!)
+    val positions = findAllOccurrences(searchText, searchWord)
+    println("  All occurrences at: $positions")
+    println("  Occurrence count: ${positions.size}")
 }
+
+// ============================================================
+// HELPER FUNCTIONS (Lesson-specific - KEEP THESE)
+// ============================================================
 
 fun doesFirstLetterExist(first: String, second: String): Boolean {
     if (second.isEmpty()) return false
@@ -158,16 +168,15 @@ fun doesFirstLetterNoContainsExist(first: String, second: String): Boolean {
     return false
 }
 
-fun findAllOccurrences(text: String, sub: String): List<Int> {
-    val result = mutableListOf<Int>()
-    var index = text.indexOf(sub)
-    while (index != -1) {
-        result.add(index)
-        index = text.indexOf(sub, index + 1)
-    }
-    return result
-}
-
-fun countOccurrences(text: String, sub: String): Int {
-    return findAllOccurrences(text, sub).size
-}
+// ============================================================
+// ❌ REMOVED - Duplicate! Now in SharedUtils
+// ============================================================
+// fun findAllOccurrences(text: String, sub: String): List<Int> {
+//     val result = mutableListOf<Int>()
+//     var index = text.indexOf(sub)
+//     while (index != -1) {
+//         result.add(index)
+//         index = text.indexOf(sub, index + 1)
+//     }
+//     return result
+// }

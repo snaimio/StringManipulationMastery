@@ -1,4 +1,23 @@
+@file:Suppress("Println")
+
 package org.example
+
+/**
+ * ============================================================
+ * LESSON 9: ADVANCED EXAMPLES
+ * ============================================================
+ *
+ * This file covers:
+ * - Character frequency
+ * - Remove duplicate words
+ * - Anagram checker
+ * - Word frequency counter
+ * - Email extractor
+ * - String compression/decompression
+ * - Most common word
+ * - Palindrome checker
+ * ============================================================
+ */
 
 fun main() {
     println("\n" + "═".repeat(60))
@@ -111,7 +130,7 @@ fun main() {
 }
 
 // ============================================================
-// ADDITIONAL FUNCTIONS (Not in shared utils)
+// ADVANCED FUNCTIONS
 // ============================================================
 
 fun charFrequency(text: String): Map<Char, Int> {
@@ -189,3 +208,16 @@ fun mostCommonWord(text: String): String? {
     return words.groupingBy { it.lowercase() }.eachCount()
         .maxByOrNull { it.value }?.key
 }
+
+// ============================================================
+// ❌ REMOVED - Duplicate! Now in SharedUtils
+// ============================================================
+// fun findAllOccurrences(text: String, sub: String): List<Int> {
+//     val result = mutableListOf<Int>()
+//     var index = text.indexOf(sub)
+//     while (index != -1) {
+//         result.add(index)
+//         index = text.indexOf(sub, index + 1)
+//     }
+//     return result
+// }

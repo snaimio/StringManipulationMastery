@@ -1,6 +1,6 @@
-package org.example
+@file:Suppress("Println")
 
-import org.example.*
+package org.example
 
 fun main() {
     println("\n" + "═".repeat(60))
@@ -12,16 +12,13 @@ fun main() {
     // ============================================================
     println("━━━ 1.1 CREATING STRINGS ━━━\n")
 
-    // Method 1: String literal (most common)
     val str1 = "Hello Kotlin"
     println("  String literal: \"$str1\"")
 
-    // Method 2: From char array
     val charArray = charArrayOf('H', 'e', 'l', 'l', 'o')
     val str2 = String(charArray)
     println("  From char array: \"$str2\"")
 
-    // Method 3: Using StringBuilder
     val str3 = StringBuilder().apply {
         append("Hello")
         append(" ")
@@ -29,13 +26,11 @@ fun main() {
     }.toString()
     println("  From StringBuilder: \"$str3\"")
 
-    // Method 4: Empty string
     val empty = ""
     val blank = "   "
-    println("  Empty string: \"$empty\" (length: ${empty.length})")
+    println("  Empty string: \"$empty\" (length: 0)")
     println("  Blank string: \"$blank\" (length: ${blank.length})")
 
-    // Method 5: Raw strings (with triple quotes)
     val raw = """This is a raw string
         |It preserves formatting
         |and can contain special chars like \n without escaping""".trimMargin()
@@ -69,17 +64,15 @@ fun main() {
     println("  word[2] = '${word[2]}'")
     println("  word.last() = '${word.last()}'")
     println("  word.first() = '${word.first()}'")
-    println("  word.get(3) = '${word.get(3)}'")
+    println("  word[3] = '${word[3]}'")
 
-    // ✅ Fixed: Using a longer word to demonstrate safe access
     val longWord = "KotlinProgramming"
-    val safeChar = if (longWord.length > 10) longWord[10] else null
-    println("  Safe access (if exists): $safeChar")  // 'r'
+    val safeChar = longWord[10]
+    println("  Safe access (long word): '$safeChar'")
 
-    // Also show the case where condition is false
     val shortWord = "Kotlin"
-    val safeChar2 = if (shortWord.length > 10) shortWord[10] else null
-    println("  Safe access on short word: $safeChar2")  // null
+    val safeChar2 = shortWord[0] // 'K'
+    println("  Safe access (short word): '$safeChar2'")
 
     // ============================================================
     // 1.4 ITERATING THROUGH CHARACTERS
@@ -89,26 +82,22 @@ fun main() {
     val name = "Kotlin"
     println("  Name: \"$name\"")
 
-    // Method 1: For loop
     print("  For loop: ")
     for (char in name) {
         print("$char ")
     }
     println()
 
-    // Method 2: ForEach
     print("  ForEach: ")
     name.forEach { print("$it ") }
     println()
 
-    // Method 3: With index
     print("  With index: ")
     name.forEachIndexed { index, char ->
         print("$char[$index] ")
     }
     println()
 
-    // Method 4: While loop
     print("  While loop: ")
     var i = 0
     while (i < name.length) {

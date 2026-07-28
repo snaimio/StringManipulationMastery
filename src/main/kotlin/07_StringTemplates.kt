@@ -1,7 +1,5 @@
 package org.example
 
-import org.example.*
-
 fun main() {
     println("\n" + "═".repeat(60))
     println("  📚  LESSON 7: STRING TEMPLATES")
@@ -92,7 +90,7 @@ fun main() {
     sb.append("Hello")
     sb.append(" ")
     sb.append("World")
-    println("  StringBuilder: ${sb.toString()}")
+    println("  StringBuilder: $sb")
 
     // Method 2: buildString
     val result = buildString {
@@ -134,8 +132,8 @@ fun main() {
         City: $city
         
         Salary Examples:
-        • Salary 1 ($${salary1}): ${if (salary1 > bonusThreshold) "Has bonus ✅" else "No bonus ❌"}
-        • Salary 2 ($${salary2}): ${if (salary2 > bonusThreshold) "Has bonus ✅" else "No bonus ❌"}
+        • Salary 1 ($${salary1}): ${"No bonus ❌"}
+        • Salary 2 ($${salary2}): ${"Has bonus ✅"}
         
         Bonus Threshold: $${bonusThreshold}
         Initials: ${firstName.take(1)}${lastName.take(1)}

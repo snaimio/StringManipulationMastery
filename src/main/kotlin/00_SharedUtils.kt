@@ -1,3 +1,5 @@
+@file:Suppress("Println")
+
 package org.example
 
 /**
@@ -9,6 +11,15 @@ package org.example
  * used across all lessons.
  * ============================================================
  */
+
+// ============================================================
+// CONSTANTS
+// ============================================================
+
+private const val VOWELS = "aeiou"
+private const val VOWELS_UPPER = "aeiouAEIOU"
+
+private const val CONSONANTS = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
 
 // ============================================================
 // DOUBLE EXTENSIONS
@@ -23,9 +34,8 @@ fun Double.format(digits: Int): String {
 // ============================================================
 
 fun String.wordCount(): Int {
-    return this.split(Regex("[^A-Za-z]+"))
-        .filter { it.isNotEmpty() }
-        .size
+    return this.split(Regex("\\W+"))
+        .count { it.isNotEmpty() }
 }
 
 fun String.shortestWord(): String? {
@@ -55,21 +65,19 @@ fun String.containsLetter(char: Char): Boolean {
 }
 
 fun String.removeVowels(): String {
-    return this.replace(Regex("[aeiouAEIOU]"), "")
+    return this.replace(Regex("[$VOWELS_UPPER]"), "")
 }
 
 fun String.removeConsonants(): String {
-    return this.replace(Regex("[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]"), "")
+    return this.replace(Regex("[$CONSONANTS]"), "")
 }
 
 fun String.reverseWords(): String {
-    return this.split(" ")
-        .map { it.reversed() }
-        .joinToString(" ")
+    return this.split(" ").joinToString(" ") { it.reversed() }
 }
 
 fun String.countVowels(): Int {
-    return this.lowercase().count { it in "aeiou" }
+    return this.lowercase().count { it in VOWELS }
 }
 
 fun String.findShortestWord(): String? {
@@ -78,20 +86,13 @@ fun String.findShortestWord(): String? {
 }
 
 fun String.doesFirstLetterExist(other: String): Boolean {
-    if (other.isEmpty()) return false
-    return this.contains(other[0], ignoreCase = true)
+    return other.isNotEmpty() && this.contains(other[0], ignoreCase = true)
 }
 
 fun String.isValidEmail(): Boolean {
     val pattern = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}")
     return pattern.matches(this)
 }
-
-// ❌ Commented out - not used anywhere
-// fun String.isValidPhoneNumber(): Boolean {
-//     val pattern = Regex("\\d{3}-\\d{3}-\\d{4}")
-//     return pattern.matches(this)
-// }
 
 // ============================================================
 // MORE EXTENSION FUNCTIONS
@@ -132,16 +133,30 @@ fun String.removeSpaces(): String {
 // ============================================================
 
 val String.vowelCount: Int
-    get() = this.count { it in "aeiouAEIOU" }
+    get() = this.count { it in VOWELS_UPPER }
 
 val String.consonantCount: Int
-    get() = this.count { it.isLetter() && it !in "aeiouAEIOU" }
+    get() = this.count { it.isLetter() && it !in VOWELS_UPPER }
 
 val String.isAllLetters: Boolean
     get() = this.all { it.isLetter() }
 
 val String.isAllDigits: Boolean
     get() = this.all { it.isDigit() }
+
+// ============================================================
+// UTILITY FUNCTIONS
+// ============================================================
+
+fun findAllOccurrences(text: String, sub: String): List<Int> {
+    val result = mutableListOf<Int>()
+    var index = text.indexOf(sub)
+    while (index != -1) {
+        result.add(index)
+        index = text.indexOf(sub, index + 1)
+    }
+    return result
+}
 
 // ============================================================
 // ANAGRAM CHECKER
